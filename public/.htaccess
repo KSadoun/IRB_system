@@ -1,9 +1,5 @@
 RewriteEngine On
 
-# Temporary debug mode for production troubleshooting.
-# Set to 0 after fixing the error.
-SetEnv APP_DEBUG 1
-
 # Remove trailing slash
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]

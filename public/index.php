@@ -1,18 +1,21 @@
 <?php
 
-if (($_SERVER['APP_DEBUG'] ?? '0') === '1') {
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL);
-}
-
 // require_once __DIR__ . '/../vendor/autoload.php';
 
-// autoload classes from the 'app' directory
+// Autoload App\\* classes from app/ with Linux-safe path mapping.
 spl_autoload_register(function ($class) {
-    $path = __DIR__ . '/../' . str_replace('\\', '/', $class) . '.php';
-    if (file_exists($path)) {
-        require_once $path;
+    $prefix = 'App\\';
+    $baseDir = __DIR__ . '/../app/';
+
+    if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
+        return;
+    }
+
+    $relativeClass = substr($class, strlen($prefix));
+    $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
+
+    if (file_exists($file)) {
+        require_once $file;
     }
 });
 
