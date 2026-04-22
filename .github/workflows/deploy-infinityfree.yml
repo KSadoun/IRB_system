@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy files to InfinityFree
+      - name: Deploy repository to htdocs
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -24,7 +24,9 @@ jobs:
           port: ${{ secrets.FTP_PORT || 21 }}
           protocol: ftp
           local-dir: ./
-          server-dir: ${{ secrets.FTP_REMOTE_DIR || '/htdocs/' }}
+          server-dir: /htdocs/
+          state-name: .ftp-deploy-state.json
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**

@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Block direct access to sensitive files and private directories.
+RewriteRule (^|/)\. - [F,L]
+RewriteRule ^\.env(?:\.|$) - [F,L,NC]
+RewriteRule ^(app|config|routes|storage)/ - [F,L,NC]
+
+# Send all requests to /public while keeping URLs clean.
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
