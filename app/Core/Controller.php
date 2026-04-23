@@ -64,4 +64,11 @@ class Controller
 
         require $layoutPath;
     }
+
+    public function redirect(string $path): never
+    {
+        $base = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
+        header('Location: ' . $base . $path);
+        exit;
+    }
 }
