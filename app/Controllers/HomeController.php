@@ -7,6 +7,8 @@ use App\Models\Researcher;
 
 class HomeController extends Controller
 {
+    protected ?string $defaultRoleLayout = 'researcher';
+
     public function index()
     {
         $researcherModel = new Researcher();

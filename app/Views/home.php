@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><?= $title ?></title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 24px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 16px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background: #f4f4f4; }
-    </style>
-</head>
-<body>
-    <h1><?= $title ?></h1>
+<style>
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin-top: 16px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f4f4f4; }
+</style>
 
-    <h2>Researchers</h2>
+<h2>Researchers</h2>
 
-    <?php if (!empty($researchers)): ?>
+<?php if (!empty($researchers)): ?>
+    <div class="table-wrap">
         <table>
             <thead>
                 <tr>
@@ -39,8 +33,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    <?php else: ?>
-        <p>No researchers found.</p>
-    <?php endif; ?>
-</body>
-</html>
+    </div>
+<?php else: ?>
+    <p>No researchers found.</p>
+<?php endif; ?>
